@@ -61,7 +61,6 @@ print(df2.mean(axis=1))
 print(df2.describe())
 
 
-
 # index로 원하는 값 불러오기
 list1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 index_date = pd.date_range('2021-01-01', periods=3)
@@ -70,3 +69,25 @@ df3 = pd.DataFrame(list1, index = index_date, columns=columns_list)
 #print(df3.loc['A'])   #-------- column이름에는 사용할 수 없다.
 print(df3.loc['2021-01-01'])
 print(df3['A']['2021-01-01'])
+
+# 세로 방향으로 통합하기
+df1 = pd.DataFrame({'Class1': [95, 92, 98, 100],
+                    'Class2': [91, 93, 97, 99]})
+df2 = pd.DataFrame({'Class1': [97, 89],
+                    'Class2': [85, 90]})
+print(df1.append(df2))
+print(df1.append(df2, ignore_index=True))
+
+# 가로 방향으로 통합하기
+df3 = pd.DataFrame({'Class3': [93, 91, 95, 98]})
+print(df1.join(df3))
+
+# 특정 열을 기준으로 통합하기
+df_left = pd.DataFrame({'key':['A', 'B', 'C'],
+                        'left': [1, 2, 3]})
+df_right = pd.DataFrame({'key':['A', 'B', 'D'],
+                        'right': [4, 5, 6]})
+print(df_left.merge(df_right, how='left', on='key'))
+print(df_left.merge(df_right, how='right', on='key'))
+print(df_left.merge(df_right, how='outer', on='key'))
+print(df_left.merge(df_right, how='inner', on='key'))
