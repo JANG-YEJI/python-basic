@@ -50,24 +50,6 @@ test = pd.read_csv('test.csv')
 print(train.shape, test.shape)
 
 
-# In[6]:
-
-
-#train[train.select_dtypes(include='float').columns].astype(int)
-
-
-# In[7]:
-
-
-test.select_dtypes(include='float')
-
-
-# In[ ]:
-
-
-
-
-
 # In[ ]:
 
 
@@ -304,14 +286,6 @@ nan_index = nan_df[nan_df["RATE"]>0].index
 
 
 test[nan_index] = test[nan_index].fillna(test.mode().iloc[0])
-#test.dropna(inplace=True)
-
-
-# In[28]:
-
-
-# for col in nan_index:
-#     test[col].fillna(test[col].mode()[0], inplace=True)
 
 
 # In[29]:
@@ -840,15 +814,6 @@ print(f'MSE:{mse:.5f} RMSE:{rmse:.5f}')
 
 
 
-# ### Bagging
-
-# In[ ]:
-
-
-bagg_ridge = BaggingRegressor(base_estimator=ridge(),
-                        n_estimators=10, random_state=0).fit(X, y)
-
-
 # In[ ]:
 
 
@@ -911,36 +876,6 @@ for model in models:
 # Lasso MSE:0.18575 RMSE:0.43099
 # Ridge MSE:0.03728 RMSE:0.19307
 # ElasticNet MSE:0.07380 RMSE:0.27166
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
 
 # In[ ]:
